@@ -1,14 +1,20 @@
 package menu;
 
+import menu.domain.Coach;
 import menu.ui.InputView;
+
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
         InputView inputView=new InputView();
-        String coach1=inputView.inputCoachNameOfSelectedLunchMenu();
-        String[] coaches=coach1.split(",");
-        for(String coach2:coaches) {
-            inputView.inputKindsOfNotSelectedLunchMenu(coach2.trim());
+        String input=inputView.inputCoachNameOfSelectedLunchMenu();
+        String[] names=input.split(",");
+
+        for(String each:names) {
+          String coachName=each.trim();
+            List<String> banned=inputView.inputKindsOfNotSelectedLunchMenu(coachName);
+            Coach coach=new Coach(coachName,banned.size());
         }
     }
 }
