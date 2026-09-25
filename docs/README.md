@@ -9,9 +9,9 @@
 - [x] 각 코치가 0~2까지 못먹는 메뉴가 있는지 검증한다.
   ex) "구구(이)가 못 먹는 메뉴를 입력해 주세요."
 - [ ] 월~금 5일에 대해 카테고리와 메뉴를 추천한다.
-- [ ] 카테고리를 무작위로 정한다 - (Randoms.pickNumberInRange)
-- [ ] 카테고리가 이미 2회 나왔으면 다시 뽑는다.
-- [ ] 카테고리에서 메뉴를 뽑는다 - (Randoms.shuffle -> get(0))
+- [x] 카테고리를 무작위로 정한다 - (Randoms.pickNumberInRange)
+- [x] 카테고리가 이미 2회 나왔으면 다시 뽑는다.
+- [x] 카테고리에서 메뉴를 뽑는다 - (Randoms.shuffle -> get(0))
   ex) String menu=Randoms.shuffle(menus).get(0);
 - [ ] 이미 추천한 메뉴면 다시 섞는다.
 - [ ] 못먹는 메뉴면 다시 섞는다.
