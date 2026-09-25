@@ -1,14 +1,18 @@
 package menu.domain;
 
-public class Coaches {
+import java.util.List;
 
+public class Coaches {
+    private final List<Coach> coaches;
+    public Coaches(List<Coach> coaches) {
+        validateNumbersOfCoaches(coaches.size());
+        this.coaches = coaches;
+    }
 
     private void validateNumbersOfCoaches(int numbers){
-        boolean n=!(numbers>=2 && numbers<=5);
-        if(n){
-            throw new IllegalArgumentException("[ERROR] 식사 가능한 인원은 최소 2명이어야 합니다.");
-        }else if(n){
-            throw new IllegalArgumentException("[ERROR] 식사 가능한 인원은 최대 5명까지 가능합니다.");
+        boolean  impossibleSize=!(numbers>=2 && numbers<=5);
+        if(impossibleSize){
+            throw new IllegalArgumentException("[ERROR] 코치는 2명 이상 5명 이하여야 합니다.");
         }
     }
 }

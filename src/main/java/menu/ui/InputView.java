@@ -1,6 +1,8 @@
 package menu.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputView {
@@ -16,6 +18,12 @@ public class InputView {
         System.out.println(name + "(이)가 못 먹는 메뉴를 입력해 주세요.");
         String input = Console.readLine();
         if (input.isBlank()) return List.of();
-        return List.of(input.split(","));
+        List<String> kinds=new ArrayList<>();
+        String[] menus = input.split(",");
+        for (String each : menus) {
+            String menu = each.trim();
+            kinds.add(menu);
+        }
+        return kinds;
     }
 }
