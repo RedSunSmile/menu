@@ -9,6 +9,10 @@ public class Coaches {
         this.coaches = coaches;
     }
 
+    public List<Coach> takeCoaches() {
+        return coaches;
+    }
+
     private void validateNumbersOfCoaches(int numbers){
         boolean  impossibleSize=!(numbers>=2 && numbers<=5);
         if(impossibleSize){

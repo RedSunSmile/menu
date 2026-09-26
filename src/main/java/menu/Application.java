@@ -21,6 +21,5 @@ public class Application {
         }
         Coaches coaches=new Coaches(coach1);
 
-
     }
 }

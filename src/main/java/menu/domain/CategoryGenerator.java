@@ -15,11 +15,15 @@ public class CategoryGenerator {
         while (categories.size() < max) {
             result = Randoms.pickNumberInRange(1, 5);
             Category category = Category.from(result);
-            if (Collections.frequency(categories, category) < 2) {
-                categories.add(category);
-            }
+            addCategoryUnderLimit(categories, category);
         }
         return categories;
+    }
+
+    private static void addCategoryUnderLimit(List<Category> categories, Category category) {
+        if (Collections.frequency(categories, category) < 2) {
+            categories.add(category);
+        }
     }
 
     public String calculateAboutCategory(Category category){
