@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuRecommender {
-    private final  CategoryGenerator categoryGenerator;
+    private final CategoryGenerator categoryGenerator;
 
     public MenuRecommender() {
         this.categoryGenerator = new CategoryGenerator();
@@ -12,11 +12,11 @@ public class MenuRecommender {
 
     public List<String> selectMenusOfDays(Coaches coaches, Category category) {
 
-        List<String> menus=new ArrayList<>();
+        List<String> menus = new ArrayList<>();
         for (Coach coach : coaches.takeCoaches()) {
             String menu = categoryGenerator.calculateAboutCategory(category);
             while (!coach.canEat(menu)) {
-                menu=categoryGenerator.calculateAboutCategory(category);
+                menu = categoryGenerator.calculateAboutCategory(category);
             }
             coach.addDigestedMenu(menu);
             menus.add(menu);
@@ -24,6 +24,14 @@ public class MenuRecommender {
         return menus;
     }
 
-    public List<String> commandMenusAboFiveDays
+    public List<Category> commandMenusAboutFiveDays(Coaches coaches) {
+        List<Category> categories = categoryGenerator.generateScopeDateOfMenus();
+
+        for (Category category : categories) {
+            selectMenusOfDays(coaches, category);
+
+        }
+        return categories;
+    }
 
 }
