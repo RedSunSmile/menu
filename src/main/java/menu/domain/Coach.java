@@ -6,6 +6,11 @@ import java.util.List;
 public class Coach {
     private final String name;
     private final List<String> counts;
+
+    public List<String> takeDigestedMenus() {
+        return digestedMenus;
+    }
+
     private final List<String> digestedMenus;
 
     public Coach(String name, List<String> counts) {
