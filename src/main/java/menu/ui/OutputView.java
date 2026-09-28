@@ -17,7 +17,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public void resultFavorMenusOfCoaches(Coaches coaches) {
+    public void resultFavoriteMenusOfCoaches(Coaches coaches) {
         for (Coach coach : coaches.takeCoaches()) {
             System.out.print("[ " + coach.takeName());
             for (String menu : coach.takeDigestedMenus()) {

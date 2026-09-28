@@ -29,6 +29,6 @@ public class Application {
         List<Category> menus = menuRecommender.commandMenusAboutFiveDays(coaches);
         OutputView outputView = new OutputView();
         outputView.resultCommandMenus(menus);
-        outputView.resultFavorMenusOfCoaches(coaches);
+        outputView.resultFavoriteMenusOfCoaches(coaches);
     }
 }
