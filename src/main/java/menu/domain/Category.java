@@ -30,7 +30,7 @@ public enum Category {
         throw new IllegalArgumentException("[ERROR] 존재하지 않는 카테고리입니다.");
     }
 
-    public List<String> getMenus(){
+    public List<String> takeMenus(){
         return menus;
     }
 
