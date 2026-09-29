@@ -5,20 +5,18 @@ import java.util.List;
 
 public class Coach {
     private final String name;
-    private final List<String> counts;
+    private List<String> counts;
+    private final List<String> digestedMenus;
+
+    public Coach(String name) {
+        this.name = name;
+        this.counts = new ArrayList<>();
+        this.digestedMenus = new ArrayList<>();
+        limitedNameLength(name);
+    }
 
     public List<String> takeDigestedMenus() {
         return digestedMenus;
-    }
-
-    private final List<String> digestedMenus;
-
-    public Coach(String name, List<String> counts) {
-        this.name = name;
-        this.counts = counts;
-        this.digestedMenus = new ArrayList<>();
-        validateAvoidMenu(counts);
-        limitedNameLength(name);
     }
 
     public String takeName() {
@@ -42,6 +40,11 @@ public class Coach {
         if (avoidMenuSize) {
             throw new IllegalArgumentException("[ERROR] 각 코치는 최대 2개까지 못 먹는 메뉴가 있습니다.");
         }
+    }
+
+    public void addAvoidMenu(List<String> avoidMenus) {
+        validateAvoidMenu(avoidMenus);
+        this.counts = avoidMenus;
     }
 
     public void addDigestedMenu(String menu) {

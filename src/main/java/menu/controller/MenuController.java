@@ -15,26 +15,43 @@ public class MenuController {
     OutputView outputView = new OutputView();
 
     public void run() {
-        String input = inputView.inputCoachNameOfSelectedLunchMenu();
-        String[] names = input.split(",");
-        List<Coach> coachList = new ArrayList<>();
+        outputView.printStart();
+        Coaches coaches = readValidCoaches();
+        readKindsOfAvoidLunchMenus(coaches);
 
-        readKindsOfAvoidLunchMenus(names, coachList);
-
-        Coaches coaches = new Coaches(coachList);
         MenuRecommender menuRecommender = new MenuRecommender();
         List<Category> menus = menuRecommender.commandMenusAboutFiveDays(coaches);
         outputView.resultCommandMenus(menus);
         outputView.resultFavoriteMenusOfCoaches(coaches);
     }
 
-    private void readKindsOfAvoidLunchMenus(String[] names, List<Coach> coachList) {
-        for (String each : names) {
-            String coachName = each.trim();
-            List<String> bannedMenus = inputView.inputKindsOfNotSelectedLunchMenu(coachName);
-            Coach coach = new Coach(coachName, bannedMenus);
-            coachList.add(coach);
+    private Coaches readValidCoaches() {
+        while (true) {
+            try {
+                return readCoaches();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
+    private Coaches readCoaches() {
+        String input = inputView.inputCoachNameOfSelectedLunchMenu();
+        String[] names = input.split(",");
+        List<Coach> coachList = new ArrayList<>();
+
+        for (String each : names) {
+            Coach coach = new Coach(each.trim());
+            coachList.add(coach);
+        }
+        return new Coaches(coachList);
+
+    }
+
+    private void readKindsOfAvoidLunchMenus(Coaches coaches) {
+        for (Coach coach : coaches.takeCoaches()) {
+            List<String> bannedMenus = inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
+            coach.addAvoidMenu(bannedMenus);
+        }
+    }
 }
