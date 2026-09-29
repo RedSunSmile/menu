@@ -1,4 +1,4 @@
-package domain;
+package menu.domain;
 
 import menu.domain.Category;
 import org.junit.jupiter.api.Test;

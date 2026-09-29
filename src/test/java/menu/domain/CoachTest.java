@@ -1,4 +1,4 @@
-package domain;
+package menu.domain;
 
 import menu.domain.Coach;
 import org.junit.jupiter.api.Test;
