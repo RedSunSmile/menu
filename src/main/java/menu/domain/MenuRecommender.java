@@ -29,7 +29,6 @@ public class MenuRecommender {
 
         for (Category category : categories) {
             selectMenusOfDays(coaches, category);
-
         }
         return categories;
     }
