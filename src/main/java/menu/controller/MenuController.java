@@ -60,7 +60,7 @@ public class MenuController {
             try {
                 List<String> bannedMenus = inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
                 coach.addAvoidMenu(bannedMenus);
-                return;//여기서메서드 ㅔ
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
