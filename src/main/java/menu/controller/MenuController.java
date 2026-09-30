@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuController {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
     public void run() {
         outputView.printStart();
@@ -51,16 +51,16 @@ public class MenuController {
 
     private void readKindsOfAvoidLunchMenus(Coaches coaches) {
         for (Coach coach : coaches.takeCoaches()) {
-           readValidAvoidMenus(coach);
+            readValidAvoidMenus(coach);
         }
     }
 
-    private void readValidAvoidMenus(Coach coach){
+    private void readValidAvoidMenus(Coach coach) {
         while (true) {
             try {
-                List<String> bannedMenus=inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
+                List<String> bannedMenus = inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
                 coach.addAvoidMenu(bannedMenus);
-                return;//여기서메서드 끝
+                return;//여기서메서드 ㅔ
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

@@ -27,7 +27,7 @@ public class Coach {
         return counts;
     }
 
-    public void limitedNameLength(String name) {
+    private void limitedNameLength(String name) {
 
         boolean isInvalidLength = !(name.length() >= 2 && name.length() <= 4);
         if (isInvalidLength) {
@@ -35,7 +35,7 @@ public class Coach {
         }
     }
 
-    public void validateAvoidMenu(List<String> values) {
+    private void validateAvoidMenu(List<String> values) {
         boolean avoidMenuSize = !(values.size() <= 2);
         if (avoidMenuSize) {
             throw new IllegalArgumentException("[ERROR] 각 코치는 최대 2개까지 못 먹는 메뉴가 있습니다.");
@@ -54,7 +54,8 @@ public class Coach {
     public boolean canEat(String menu) {
         if (counts.contains(menu)) {
             return false;
-        } else if (digestedMenus.contains(menu)) {
+        }
+        if (digestedMenus.contains(menu)) {
             return false;
         }
         return true;
