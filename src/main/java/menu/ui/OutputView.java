@@ -30,6 +30,7 @@ public class OutputView {
             }
             System.out.println(" ]");
         }
+        System.out.println();
         System.out.println("추천을 완료했습니다.");
     }
 }
