@@ -10,8 +10,7 @@ public class MenuRecommender {
         this.categoryGenerator = new CategoryGenerator();
     }
 
-    public List<String> selectMenusOfDays(Coaches coaches, Category category) {
-
+    public void selectMenusOfDays(Coaches coaches, Category category) {
         List<String> menus = new ArrayList<>();
         for (Coach coach : coaches.takeCoaches()) {
             String menu = categoryGenerator.calculateAboutCategory(category);
@@ -21,7 +20,6 @@ public class MenuRecommender {
             coach.addDigestedMenu(menu);
             menus.add(menu);
         }
-        return menus;
     }
 
     public List<Category> commandMenusAboutFiveDays(Coaches coaches) {
