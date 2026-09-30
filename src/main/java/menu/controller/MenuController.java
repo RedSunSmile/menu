@@ -16,6 +16,7 @@ public class MenuController {
 
     public void run() {
         outputView.printStart();
+
         Coaches coaches = readValidCoaches();
         readKindsOfAvoidLunchMenus(coaches);
 
@@ -50,8 +51,19 @@ public class MenuController {
 
     private void readKindsOfAvoidLunchMenus(Coaches coaches) {
         for (Coach coach : coaches.takeCoaches()) {
-            List<String> bannedMenus = inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
-            coach.addAvoidMenu(bannedMenus);
+           readValidAvoidMenus(coach);
+        }
+    }
+
+    private void readValidAvoidMenus(Coach coach){
+        while (true) {
+            try {
+                List<String> bannedMenus=inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
+                coach.addAvoidMenu(bannedMenus);
+                return;//여기서메서드 끝
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }
