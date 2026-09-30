@@ -11,14 +11,13 @@ public class MenuRecommender {
     }
 
     public void selectMenusOfDays(Coaches coaches, Category category) {
-        List<String> menus = new ArrayList<>();
+
         for (Coach coach : coaches.takeCoaches()) {
             String menu = categoryGenerator.calculateAboutCategory(category);
             while (!coach.canEat(menu)) {
                 menu = categoryGenerator.calculateAboutCategory(category);
             }
             coach.addDigestedMenu(menu);
-            menus.add(menu);
         }
     }
 
