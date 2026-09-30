@@ -1,7 +1,5 @@
 package menu.domain;
 
-import menu.domain.Coach;
-import menu.domain.Coaches;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
