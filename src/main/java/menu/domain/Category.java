@@ -1,5 +1,6 @@
 package menu.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public enum Category {
@@ -23,12 +24,10 @@ public enum Category {
     }
 
     public static Category from(int number) {
-        for (Category category : values()) {
-            if (category.number == number) {
-                return category;
-            }
-        }
-        throw new IllegalArgumentException("[ERROR] 존재하지 않는 카테고리입니다.");
+        return Arrays.stream(values())
+                .filter(category -> category.number == number)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 카테고리입니다."));
     }
 
     public List<String> takeMenus() {

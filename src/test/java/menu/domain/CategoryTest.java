@@ -7,14 +7,14 @@ import static org.assertj.core.api.Assertions.*;
 public class CategoryTest {
 
     @Test
-    void 없는_카테고리_번호가_0이면_예외가_발생한다() {
+    void 카테고리_번호가_0이면_예외가_발생한다() {
         assertThatThrownBy(() -> Category.from(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 존재하지 않는 카테고리입니다.");
     }
 
     @Test
-    void 없는_카테고리_번호면_음수면_예외가_발생한다() {
+    void 없는_카테고리_번호가_음수면_예외가_발생한다() {
         assertThatThrownBy(() -> Category.from(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 존재하지 않는 카테고리입니다.");
@@ -46,8 +46,6 @@ public class CategoryTest {
         Category[] categories = Category.values();
         assertThat(categories).hasSize(5);
     }
-
-
 }
 
 

@@ -1,6 +1,7 @@
 package menu.domain;
 
 import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 public class CoachTest {
 
     @Test
-    void 코치이름길이의_범위가_최소범위가_아니면_예외가_발생한다() {
+    void 코치이름_길이의_범위가_최소범위가_아니면_예외가_발생한다() {
         assertThatThrownBy(() -> new Coach("가"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 코치 이름은 2~4글자 사이여야 합니다.");
@@ -23,12 +24,9 @@ public class CoachTest {
     }
 
     @Test
-    void 코치이름길이의_범위는_최소2글자와_최대4글자이다() {
-        Coach coach1 = new Coach("짱구");
-        Coach coach2 = new Coach("김서방네");
-
-        assertThat(coach1.takeName().length()).isEqualTo(2);
-        assertThat(coach2.takeName().length()).isEqualTo(4);
+    void 코치이름이_2에서_4글자_사이면_예외가_발생하지_않는다() {
+        assertThatCode(() -> new Coach("짱구")).doesNotThrowAnyException();
+        assertThatCode(() -> new Coach("김서방네")).doesNotThrowAnyException();
     }
 
     @Test
@@ -61,7 +59,7 @@ public class CoachTest {
     }
 
     @Test
-    void 못먹는_메뉴는_먹을수_없다(){
+    void 못먹는_메뉴는_먹을수_없다() {
         Coach coach = new Coach("김봉팔");
         coach.addAvoidMenus(List.of("뇨끼"));
         assertThat(coach.canEat("뇨끼")).isFalse();

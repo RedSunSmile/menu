@@ -2,7 +2,7 @@ package menu.ui;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
@@ -21,13 +21,9 @@ public class InputView {
         if (input.isBlank()) {
             return List.of();
         }
-        List<String> kinds = new ArrayList<>();
-        String[] menus = input.split(",");
-        for (String each : menus) {
-            String menu = each.trim();
-            kinds.add(menu);
-        }
-        return kinds;
-    }
+        return Arrays.stream(input.split(","))
+                .map(each -> each.trim())
+                .toList();
 
+    }
 }

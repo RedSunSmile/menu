@@ -7,7 +7,7 @@ import menu.domain.MenuRecommender;
 import menu.ui.InputView;
 import menu.ui.OutputView;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuController {
@@ -38,14 +38,9 @@ public class MenuController {
     }
 
     private Coaches readCoaches() {
-        String input = inputView.inputCoachNames();
-        String[] names = input.split(",");
-        List<Coach> coachList = new ArrayList<>();
-
-        for (String each : names) {
-            Coach coach = new Coach(each.trim());
-            coachList.add(coach);
-        }
+        List<Coach> coachList = Arrays.stream(inputView.inputCoachNames().split(","))
+                .map(each -> new Coach(each.trim()))
+                .toList();
         return new Coaches(coachList);
     }
 
