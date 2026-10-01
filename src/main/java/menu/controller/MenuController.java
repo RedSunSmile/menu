@@ -21,9 +21,10 @@ public class MenuController {
         readKindsOfAvoidLunchMenus(coaches);
 
         MenuRecommender menuRecommender = new MenuRecommender();
-        List<Category> menus = menuRecommender.commandMenusAboutFiveDays(coaches);
-        outputView.resultCommandMenus(menus);
-        outputView.resultFavoriteMenusOfCoaches(coaches);
+        List<Category> categories = menuRecommender.recommendMenusAboutFiveDays(coaches);
+        outputView.resultRecommendedCategories(categories);
+        outputView.resultSuggestedMenusOfCoaches(coaches);
+        outputView.printCompletion();
     }
 
     private Coaches readValidCoaches() {
@@ -37,7 +38,7 @@ public class MenuController {
     }
 
     private Coaches readCoaches() {
-        String input = inputView.inputCoachNameOfSelectedLunchMenu();
+        String input = inputView.inputCoachNames();
         String[] names = input.split(",");
         List<Coach> coachList = new ArrayList<>();
 
@@ -46,7 +47,6 @@ public class MenuController {
             coachList.add(coach);
         }
         return new Coaches(coachList);
-
     }
 
     private void readKindsOfAvoidLunchMenus(Coaches coaches) {
@@ -58,8 +58,8 @@ public class MenuController {
     private void readValidAvoidMenus(Coach coach) {
         while (true) {
             try {
-                List<String> bannedMenus = inputView.inputKindsOfNotSelectedLunchMenu(coach.takeName());
-                coach.addAvoidMenu(bannedMenus);
+                List<String> bannedMenus = inputView.inputKindsOfAvoidLunchMenu(coach.takeName());
+                coach.addAvoidMenus(bannedMenus);
                 return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

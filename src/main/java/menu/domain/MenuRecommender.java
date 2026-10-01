@@ -1,6 +1,5 @@
 package menu.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MenuRecommender {
@@ -10,24 +9,22 @@ public class MenuRecommender {
         this.categoryGenerator = new CategoryGenerator();
     }
 
-    public void selectMenusOfDays(Coaches coaches, Category category) {
-
+    private void selectMenusOfEachDay(Coaches coaches, Category category) {
         for (Coach coach : coaches.takeCoaches()) {
-            String menu = categoryGenerator.calculateAboutCategory(category);
+            String menu = categoryGenerator.pickMenuAboutCategory(category);
             while (!coach.canEat(menu)) {
-                menu = categoryGenerator.calculateAboutCategory(category);
+                menu = categoryGenerator.pickMenuAboutCategory(category);
             }
             coach.addDigestedMenu(menu);
         }
     }
 
-    public List<Category> commandMenusAboutFiveDays(Coaches coaches) {
-        List<Category> categories = categoryGenerator.generateScopeDateOfMenus();
+    public List<Category> recommendMenusAboutFiveDays(Coaches coaches) {
+        List<Category> categories = categoryGenerator.generateCategories();
 
         for (Category category : categories) {
-            selectMenusOfDays(coaches, category);
+            selectMenusOfEachDay(coaches, category);
         }
         return categories;
     }
-
 }

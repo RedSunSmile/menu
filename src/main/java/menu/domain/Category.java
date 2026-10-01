@@ -21,16 +21,17 @@ public enum Category {
         this.number = number;
         this.menus = menus;
     }
-    public static Category from(int number){
-        for(Category category:values()){
-            if(category.number==number){
+
+    public static Category from(int number) {
+        for (Category category : values()) {
+            if (category.number == number) {
                 return category;
             }
         }
         throw new IllegalArgumentException("[ERROR] 존재하지 않는 카테고리입니다.");
     }
 
-    public List<String> takeMenus(){
+    public List<String> takeMenus() {
         return menus;
     }
 

@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Coach {
     private final String name;
-    private List<String> counts;
+    private List<String> avoidMenus;
     private final List<String> digestedMenus;
 
     public Coach(String name) {
+        validateNameLength(name);
         this.name = name;
-        this.counts = new ArrayList<>();
+        this.avoidMenus = new ArrayList<>();
         this.digestedMenus = new ArrayList<>();
-        limitedNameLength(name);
     }
 
     public List<String> takeDigestedMenus() {
@@ -23,11 +23,11 @@ public class Coach {
         return name;
     }
 
-    public List<String> takeCounts() {
-        return counts;
+    public List<String> takeAvoidMenus() {
+        return avoidMenus;
     }
 
-    private void limitedNameLength(String name) {
+    private void validateNameLength(String name) {
 
         boolean isInvalidLength = !(name.length() >= 2 && name.length() <= 4);
         if (isInvalidLength) {
@@ -35,16 +35,16 @@ public class Coach {
         }
     }
 
-    private void validateAvoidMenu(List<String> values) {
-        boolean avoidMenuSize = !(values.size() <= 2);
-        if (avoidMenuSize) {
+    private void validateAvoidMenus(List<String> avoidMenus) {
+        boolean isOverLimit = !(avoidMenus.size() <= 2);
+        if (isOverLimit) {
             throw new IllegalArgumentException("[ERROR] 각 코치는 최대 2개까지 못 먹는 메뉴가 있습니다.");
         }
     }
 
-    public void addAvoidMenu(List<String> avoidMenus) {
-        validateAvoidMenu(avoidMenus);
-        this.counts = avoidMenus;
+    public void addAvoidMenus(List<String> avoidMenus) {
+        validateAvoidMenus(avoidMenus);
+        this.avoidMenus = avoidMenus;
     }
 
     public void addDigestedMenu(String menu) {
@@ -52,7 +52,7 @@ public class Coach {
     }
 
     public boolean canEat(String menu) {
-        if (counts.contains(menu)) {
+        if (avoidMenus.contains(menu)) {
             return false;
         }
         if (digestedMenus.contains(menu)) {
@@ -60,6 +60,4 @@ public class Coach {
         }
         return true;
     }
-
-
 }
