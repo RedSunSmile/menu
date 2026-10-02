@@ -38,7 +38,8 @@ public class MenuController {
     }
 
     private Coaches readCoaches() {
-        List<Coach> coachList = Arrays.stream(inputView.inputCoachNames().split(","))
+        String input = inputView.inputCoachNames();
+        List<Coach> coachList = Arrays.stream(input.split(","))
                 .map(each -> new Coach(each.trim()))
                 .toList();
         return new Coaches(coachList);
