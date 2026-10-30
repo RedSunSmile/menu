@@ -9,7 +9,7 @@ public class MenuRecommender {
         this.categoryGenerator = new CategoryGenerator();
     }
 
-    private void selectMenusOfEachDay(Coaches coaches, Category category) {
+    private void selectMenuOfEachDay(Coaches coaches, Category category) {
         for (Coach coach : coaches.takeCoaches()) {
             String menu = categoryGenerator.pickMenuAboutCategory(category);
             while (!coach.canEat(menu)) {
@@ -19,11 +19,11 @@ public class MenuRecommender {
         }
     }
 
-    public List<Category> recommendMenusAboutFiveDays(Coaches coaches) {
+    public List<Category> recommendMenuAboutFiveDay(Coaches coaches) {
         List<Category> categories = categoryGenerator.generateCategories();
 
         for (Category category : categories) {
-            selectMenusOfEachDay(coaches, category);
+            selectMenuOfEachDay(coaches, category);
         }
         return categories;
     }

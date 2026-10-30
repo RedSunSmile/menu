@@ -15,9 +15,9 @@ public class MenuRecommenderTest {
                 new Coach("포비")
         );
         Coaches coaches = new Coaches(coachList);
-        menuRecommender.recommendMenusAboutFiveDays(coaches);
+        menuRecommender.recommendMenuAboutFiveDay(coaches);
         for (Coach coach : coaches.takeCoaches()) {
-            assertThat(coach.takeDigestedMenus()).hasSize(5);
+            assertThat(coach.takeDigestedMenu()).hasSize(5);
         }
     }
 
@@ -29,9 +29,9 @@ public class MenuRecommenderTest {
                 new Coach("네오")
         );
         Coaches coaches = new Coaches(coachList);
-        menuRecommender.recommendMenusAboutFiveDays(coaches);
+        menuRecommender.recommendMenuAboutFiveDay(coaches);
         for (Coach coach : coaches.takeCoaches()) {
-            assertThat(coach.takeDigestedMenus()).doesNotHaveDuplicates();
+            assertThat(coach.takeDigestedMenu()).doesNotHaveDuplicates();
         }
     }
 
@@ -39,14 +39,14 @@ public class MenuRecommenderTest {
     void 못_먹는_메뉴는_추천되지_않는다() {
         MenuRecommender menuRecommender = new MenuRecommender();
         Coach jason = new Coach("제이슨");
-        jason.addAvoidMenus(List.of("똠얌꿍"));
+        jason.addAvoidMenu(List.of("똠얌꿍"));
         Coach neo = new Coach("네오");
-        neo.addAvoidMenus(List.of("나시고렝"));
+        neo.addAvoidMenu(List.of("나시고렝"));
         List<Coach> coachList = List.of(jason, neo);
         Coaches coaches = new Coaches(coachList);
-        menuRecommender.recommendMenusAboutFiveDays(coaches);
+        menuRecommender.recommendMenuAboutFiveDay(coaches);
 
-        assertThat(jason.takeDigestedMenus()).doesNotContain("똠얌꿍");
-        assertThat(neo.takeDigestedMenus()).doesNotContain("나시고렝");
+        assertThat(jason.takeDigestedMenu()).doesNotContain("똠얌꿍");
+        assertThat(neo.takeDigestedMenu()).doesNotContain("나시고렝");
     }
 }

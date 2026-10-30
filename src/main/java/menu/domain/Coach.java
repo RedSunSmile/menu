@@ -5,26 +5,26 @@ import java.util.List;
 
 public class Coach {
     private final String name;
-    private List<String> avoidMenus;
-    private final List<String> digestedMenus;
+    private List<String> avoidMenu;
+    private final List<String> digestedMenu;
 
     public Coach(String name) {
         validateNameLength(name);
         this.name = name;
-        this.avoidMenus = new ArrayList<>();
-        this.digestedMenus = new ArrayList<>();
+        this.avoidMenu = new ArrayList<>();
+        this.digestedMenu = new ArrayList<>();
     }
 
-    public List<String> takeDigestedMenus() {
-        return digestedMenus;
+    public List<String> takeDigestedMenu() {
+        return digestedMenu;
     }
 
     public String takeName() {
         return name;
     }
 
-    public List<String> takeAvoidMenus() {
-        return avoidMenus;
+    public List<String> takeAvoidMenu() {
+        return avoidMenu;
     }
 
     private void validateNameLength(String name) {
@@ -35,27 +35,27 @@ public class Coach {
         }
     }
 
-    private void validateAvoidMenus(List<String> avoidMenus) {
-        boolean isOverLimit = !(avoidMenus.size() <= 2);
+    private void validateAvoidMenu(List<String> avoidMenu) {
+        boolean isOverLimit = !(avoidMenu.size() <= 2);
         if (isOverLimit) {
             throw new IllegalArgumentException("[ERROR] 각 코치는 최대 2개까지 못 먹는 메뉴가 있습니다.");
         }
     }
 
-    public void addAvoidMenus(List<String> avoidMenus) {
-        validateAvoidMenus(avoidMenus);
-        this.avoidMenus = avoidMenus;
+    public void addAvoidMenu(List<String> avoidMenu) {
+        validateAvoidMenu(avoidMenu);
+        this.avoidMenu = avoidMenu;
     }
 
     public void addDigestedMenu(String menu) {
-        digestedMenus.add(menu);
+        digestedMenu.add(menu);
     }
 
     public boolean canEat(String menu) {
-        if (avoidMenus.contains(menu)) {
+        if (avoidMenu.contains(menu)) {
             return false;
         }
-        if (digestedMenus.contains(menu)) {
+        if (digestedMenu.contains(menu)) {
             return false;
         }
         return true;

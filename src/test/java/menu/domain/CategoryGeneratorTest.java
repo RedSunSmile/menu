@@ -28,6 +28,6 @@ public class CategoryGeneratorTest {
     void 돌려준_메뉴는_카테고리_메뉴_안에_있다() {
         CategoryGenerator categoryGenerator = new CategoryGenerator();
         String menu = categoryGenerator.pickMenuAboutCategory(Category.한식);
-        assertThat(menu).isIn(Category.한식.takeMenus());
+        assertThat(menu).isIn(Category.한식.takeMenu());
     }
 }

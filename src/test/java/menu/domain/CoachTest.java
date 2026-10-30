@@ -35,8 +35,8 @@ public class CoachTest {
         List<String> values = new ArrayList<>();
         values.add("우동");
         values.add("뇨끼");
-        coach.addAvoidMenus(values);
-        assertThat(coach.takeAvoidMenus()).hasSize(2);
+        coach.addAvoidMenu(values);
+        assertThat(coach.takeAvoidMenu()).hasSize(2);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class CoachTest {
         values.add("우동");
         values.add("뇨끼");
         values.add("나시고렝");
-        assertThatThrownBy(() -> coach.addAvoidMenus(values))
+        assertThatThrownBy(() -> coach.addAvoidMenu(values))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 각 코치는 최대 2개까지 못 먹는 메뉴가 있습니다.");
     }
@@ -61,7 +61,7 @@ public class CoachTest {
     @Test
     void 못먹는_메뉴는_먹을수_없다() {
         Coach coach = new Coach("김봉팔");
-        coach.addAvoidMenus(List.of("뇨끼"));
+        coach.addAvoidMenu(List.of("뇨끼"));
         assertThat(coach.canEat("뇨끼")).isFalse();
     }
 

@@ -21,10 +21,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public void resultSuggestedMenusOfCoaches(Coaches coaches) {
+    public void resultSuggestedMenuOfCoaches(Coaches coaches) {
         for (Coach coach : coaches.takeCoaches()) {
             System.out.print("[ " + coach.takeName());
-            for (String menu : coach.takeDigestedMenus()) {
+            for (String menu : coach.takeDigestedMenu()) {
                 System.out.print(" | " + menu);
             }
             System.out.println(" ]");

@@ -16,11 +16,11 @@ public enum Category {
             "스파게티", "피자", "파니니"));
 
     private final int number;
-    private final List<String> menus;
+    private final List<String> menu;
 
-    Category(int number, List<String> menus) {
+    Category(int number, List<String> menu) {
         this.number = number;
-        this.menus = menus;
+        this.menu = menu;
     }
 
     public static Category from(int number) {
@@ -30,8 +30,8 @@ public enum Category {
                 .orElseThrow(() -> new IllegalArgumentException("[ERROR] 존재하지 않는 카테고리입니다."));
     }
 
-    public List<String> takeMenus() {
-        return menus;
+    public List<String> takeMenu() {
+        return menu;
     }
 
 

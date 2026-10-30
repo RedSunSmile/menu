@@ -27,6 +27,6 @@ public class CategoryGenerator {
     }
 
     public String pickMenuAboutCategory(Category category) {
-        return Randoms.shuffle(category.takeMenus()).get(0);
+        return Randoms.shuffle(category.takeMenu()).get(0);
     }
 }
