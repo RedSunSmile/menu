@@ -20,7 +20,7 @@ public class MenuController {
         MenuRecommender menuRecommender = new MenuRecommender(new CategoryGenerator());
         List<Category> categories = menuRecommender.recommendMenuOfFiveDay(coaches);
         outputView.recommendCategory(categories);
-        outputView.recommendMenuOfCoaches(coaches);
+        outputView.recommendMenuOfCoach(coaches);
         outputView.completeMessage();
     }
 

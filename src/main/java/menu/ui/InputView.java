@@ -20,7 +20,7 @@ public class InputView {
         if (input.isBlank()) {
             return List.of();
         }
-        String split[] = input.split(",");
+        String[] split = input.split(",");
         List<String> avoidMenu = new ArrayList<>();
         for (String each : split) {
             avoidMenu.add(each.trim());

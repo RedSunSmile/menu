@@ -22,7 +22,7 @@ public class OutputView {
         System.out.println(" ]");
     }
 
-    public void recommendMenuOfCoaches(Coaches coaches){
+    public void recommendMenuOfCoach(Coaches coaches){
         for(Coach coach:coaches.takeCoaches()){
             System.out.print("[ "+coach.takeName());
             for(String menu:coach.takeDigestedMenu()){
