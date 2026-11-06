@@ -13,20 +13,21 @@ public class CategoryGenerator {
     public List<Category> generateCategories() {
         List<Category> categories = new ArrayList<>();
         while (categories.size() < CATEGORY_COUNT) {
-         int result=Randoms.pickNumberInRange(1,5);
-         Category category=Category.from(result);
-         addCategoryUnderLimit(categories,category);
+            int scope = Randoms.pickNumberInRange(1, 5);
+            Category category = Category.from(scope);
+            addCategoryUnderLimit(categories, category);
         }
         return categories;
     }
 
     private void addCategoryUnderLimit(List<Category> categories, Category category) {
-        if (Collections.frequency(categories, category) < MAX_SAME_CATEGORY){
+        if (Collections.frequency(categories, category) < MAX_SAME_CATEGORY) {
             categories.add(category);
         }
     }
 
-    public String pickMenuAboutCategory(Category category){
-        return Randoms.shuffle(category.takeMenu()).get(0);
+    public String pickMenuAboutCategory(Category category) {
+        String menu = Randoms.shuffle(category.takeMenu()).get(0);
+        return menu;
     }
 }

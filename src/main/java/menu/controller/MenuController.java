@@ -12,47 +12,37 @@ public class MenuController {
     private final OutputView outputView = new OutputView();
 
     public void run() {
+        //점심 메뉴 추천 시작 출력
         outputView.printStart();
-        Coaches coaches = readValidCoaches();
-        for (Coach coach : coaches.takeCoaches()) {
-            readValidAvoidMenu(coach);
-        }
-        MenuRecommender menuRecommender = new MenuRecommender(new CategoryGenerator());
-        List<Category> categories = menuRecommender.recommendMenuOfFiveDay(coaches);
+
+//메뉴추천 받을 코치이름 입력 받기
+        Coaches coaches = readCoaches();
+        //코치가 못먹는 메뉴 입력
+        readAvoidMenu(coaches);
+        CategoryGenerator categoryGenerator = new CategoryGenerator();
+        MenuRecommender recommender = new MenuRecommender(categoryGenerator);
+
+        //메뉴추천 결과 출력
+        List<Category> categories = recommender.recommendMenuOfFiveDay(coaches);
         outputView.recommendCategory(categories);
         outputView.recommendMenuOfCoach(coaches);
         outputView.completeMessage();
     }
 
-    private Coaches readValidCoaches() {
-        while (true) {
-            try {
-                return readCoaches();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    private void readAvoidMenu(Coaches coaches) {
+        for (Coach coach : coaches.takeCoaches()) {
+            List<String> avoidMenu = inputView.inputAvoidMenu(coach.takeName());
+            coach.addAvoidMenu(avoidMenu);
         }
     }
 
-    public Coaches readCoaches() {
-        String input = inputView.inputRecommenderMenuOfCoach();
-        String[] names = input.split(",");
+    private Coaches readCoaches() {
+        String inputName = inputView.inputRecommenderMenuOfCoach();
         List<Coach> coachList = new ArrayList<>();
-        for (String each : names) {
-            coachList.add(new Coach(each.trim()));
+        for (String name : inputName.split(",")) {
+            coachList.add(new Coach(name.trim()));
         }
-        return new Coaches(coachList);
-    }
-
-    private void readValidAvoidMenu(Coach coach) {
-        while (true) {
-            try {
-                List<String> avoidMenu = inputView.inputAvoidMenu(coach.takeName());
-                coach.addAvoidMenu(avoidMenu);
-                return;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Coaches result = new Coaches(coachList);
+        return result;
     }
 }

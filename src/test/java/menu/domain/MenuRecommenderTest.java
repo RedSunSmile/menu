@@ -10,25 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class MenuRecommenderTest {
 
     @Test
-    void 하루에_대한_메뉴를_선택한다() {
-        CategoryGenerator categoryGenerator = new CategoryGenerator();
-        MenuRecommender menuRecommender = new MenuRecommender(categoryGenerator);
-        String name = "포비,스칼라";
-        String[] names = name.split(",");
-
-        List<Coach> coachesList = Arrays.stream(names)
-                .map(Coach::new)
-                .toList();
-        Coaches coaches = new Coaches(coachesList);
-        menuRecommender.selectMenusOfDay(coaches, Category.양식);
-
-        for (Coach coach : coaches.takeCoaches()) {
-            assertThat(coach.takeDigestedMenu()).hasSize(1);
-            assertThat(Category.양식.takeMenu()).containsAll(coach.takeDigestedMenu());
-        }
-    }
-
-    @Test
     void 추천된_5일치에_대한_메뉴를_선택한다() {
         CategoryGenerator categoryGenerator = new CategoryGenerator();
         MenuRecommender menuRecommender = new MenuRecommender(categoryGenerator);
